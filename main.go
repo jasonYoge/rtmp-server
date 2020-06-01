@@ -5,13 +5,6 @@ import (
 	"net"
 )
 
-type Message struct {
-	MessageType uint8
-	Payload uint32
-	Timestamp uint32
-	StreamID uint32
-}
-
 const (
 	PORT = ":1935"
 )
@@ -21,7 +14,7 @@ func handleConnection(conn net.Conn) {
 	proxy := NewNetworkProxy(conn)
 	err := Handshake(proxy)
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatal(err)
 	}
 
 	return
